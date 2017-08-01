@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { GridPageComponent } from './grid-page/grid-page.component';
 import { GridPageDisplayComponent } from './grid-page/grid-page.display.component';
+import { GridService } from './grid.service';
 
 const gridRoutes: Routes = [
   { path: '', component: GridPageComponent }
@@ -27,6 +28,9 @@ const gridRoutes: Routes = [
   declarations: [
     GridPageComponent,
     GridPageDisplayComponent
+  ],
+  providers: [
+    GridService
   ]
 })
 export class GridModule { }

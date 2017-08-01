@@ -1,12 +1,12 @@
  <div class="example-container mat-elevation-z8">
   <div class="example-header">
     <md-input-container>
-      <input mdInput [formControl]="filter" [placeholder]="'Filter ' + simpleDataSource?.length + ' users'">
+      <input mdInput [formControl]="filter" [placeholder]="'Filter ' + listLength + ' users'">
     </md-input-container>
     <md-slider [min]="2" [max]="5000" [step]="1" [tickInterval]="250" [value]="count" (input)="updateCount($event)"></md-slider>
   </div>
 
-  <md-table #table [trackBy]="trackNodesBy" mdSort [dataSource]="dataSource">
+  <md-table #table [trackBy]="trackNodesBy" mdSort [dataSource]="entities">
 
     <ng-container cdkColumnDef="displayName">
       <md-header-cell *cdkHeaderCellDef md-sort-header> Display Name </md-header-cell>

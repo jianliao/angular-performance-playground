@@ -1,18 +1,37 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
+import { MdSort } from '@angular/material';
 
 import { D3HelperService } from '../../d3-helper.service';
+import { GridService } from '../grid.service';
+
 @Component({
   selector: 'app-grid-page',
   templateUrl: './grid-page.component.html',
   styleUrls: ['./grid-page.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // Currently no OnPush here as binding is changed internally
+  // This is an indication that we are beginning to reach levels
+  // of complexity worthy of centralized state management
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridPageComponent {
-  entities = this.d3Helper.entitiesAndDetails;
+  entities = this.gridService.gridDataSource;
   count = this.d3Helper.countValue;
-  constructor(private d3Helper: D3HelperService) { }
+  listLength = this.gridService.listLength;
+
+  constructor(
+    private d3Helper: D3HelperService,
+    private gridService: GridService
+  ) { }
 
   countChanged(value: number) {
     this.d3Helper.updateCount(value);
+  }
+
+  filterChanged(value: string) {
+    this.gridService.updateFilter(value);
+  }
+
+  gridReady(value: MdSort) {
+    this.gridService.setupDataSource(value);
   }
 }

@@ -1,6 +1,9 @@
 <app-grid-page-display
   [entities]="entities | async"
   [count]="count | async"
+  [listLength]="listLength | async"
   (countChanged)="countChanged($event)"
+  (filterChanged)="filterChanged($event)"
+  (gridReady)="gridReady($event)"
 >
 </app-grid-page-display>
